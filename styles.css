@@ -1,3 +1,15 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@100;300;400;500;700;900&display=swap');
+
+@font-face {
+    font-family: "norsebold";
+    src: 
+        url(fonts/norse-bold-webfont.woff2) format("woff2"),
+        url(fonts/norse-bold-webfont.woff) format("woff");
+    font-weight: normal;
+    font-style: normal;
+
+}
+
 * {
     margin: 0;
     padding: 0;
@@ -17,6 +29,7 @@ header {
     flex-direction: column;
     gap: 2em;
     font-size: 2rem;
+    font-weight: 500;
 }
 
 .left {
@@ -39,7 +52,7 @@ header {
 }
 
 .logo-container p {
-    font-size: 10rem;
+    font: 10rem "norsebold", sans-serif;
     color: #fff;
 }
 
@@ -53,6 +66,7 @@ header {
     padding: 10em 20em 10em 5em;
     gap: 5em;
     width: 60vw;
+    font-family: "Roboto", Arial, sans-serif;
 }
 
 form {
@@ -62,11 +76,17 @@ form {
     grid-template-rows: repeat(4, 1fr);
     row-gap: 1em;
     column-gap: 0.5em;
-    font-size: 1.5rem;
+}
+
+form label {
+    font-weight: 300;
+    font-size: 1rem;
 }
 
 .instructions {
     grid-column: span 2;
+    align-self: center;
+    font-size: 2rem;
 }
 
 .form-row {
@@ -76,6 +96,31 @@ form {
 
 .form-row input {
     width: 40ch;
+    font-size: 1.5rem;
 }
 
+.submit {
+    display: flex;
+    flex-direction: column;
+    gap: 2em;
+}
+.submit button {
+    align-self: flex-start;
+    font-size: 1.5em;
+    font-weight: 700;
+    color: #fff;
+    background-color: #596D48;
+    border: none;
+    border-radius: 3px;
+    padding: 10px 30px;
+    cursor: pointer;
+}
 
+.submit p {
+    font-size: 1.5rem;
+}
+
+a {
+    color: #596D48;
+    font-weight: 500;
+}
