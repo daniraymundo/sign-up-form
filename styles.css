@@ -41,6 +41,24 @@ header {
     position: relative;
 }
 
+.credits {
+    display: flex;
+    position: absolute;
+    bottom: 0;
+    margin: 0;
+    padding: 0;
+    color: #fff;
+    width: 100%;
+    justify-content: center;
+    padding: 5px;
+    font-family: "Roboto", Arial, sans-serif;
+    font-size: 1rem;
+}
+
+.credits a {
+    color:#fff;
+}
+
 .logo-container {
     display: flex;
     position: absolute;
@@ -79,7 +97,6 @@ form {
 }
 
 form label {
-    font-weight: 300;
     font-size: 1rem;
 }
 
@@ -97,6 +114,7 @@ form label {
 .form-row input {
     width: 40ch;
     font-size: 1.5rem;
+    border: 1px solid #E5E7EB;
 }
 
 .submit {
