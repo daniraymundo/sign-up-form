@@ -6,6 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Sign-up Form</title>
     <link rel="stylesheet" href="styles.css">
+    <script src="script.js" defer></script>
 </head>
 <body>
     <div class="left">
@@ -28,7 +29,7 @@
             </div>
         </header>
         <main>
-            <form action="" method="get" id="sign-up">
+            <form action="#" method="get" id="form" novalidate>
                 <div class="instructions">
                     <p>Let's do this!</p>
                 </div>
@@ -36,36 +37,42 @@
                 <div class="form-row">
                     <label for="firstname">FIRST NAME*</label>
                     <input type="text" id="firstname" name="firstname" required>
+                    <p class="error" id="fn-error">Error message</p>
                 </div>
 
                 <div class="form-row">
                     <label for="lastname">LAST NAME*</label>
                     <input type="text" id="lastname" name="lastname" required>
+                    <p class="error" id="ln-error">Error message</p>
                 </div>
 
                 <div class="form-row">
                     <label for="email">EMAIL*</label>
-                    <input type="email" id="email" name="email" required>
+                    <input type="email" id="email" name="email" pattern="^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$" title="Invalid email address." required>
+                    <p class="error" id="email-error">Error message</p>
                 </div>
 
                 <div class="form-row">
                     <label for="phone">PHONE NUMBER*</label>
-                    <input type="tel" id="phone" name="phone" required>
+                    <input type="tel" id="phone" name="phone" pattern="^[0-9]+$" title="Only numbers are allowed" required>
+                    <p class="error" id="phone-error">Error message</p>
                 </div>
 
                 <div class="form-row">
                     <label for="pw">PASSWORD*</label>
-                    <input type="password" id="pw" name="pw" required>
+                    <input type="password" id="pw" name="pw" minlength = 8 required>
+                    <p class="error" id="pw-error">Error message</p>
                 </div>
 
                 <div class="form-row">
-                    <label for="confirm">CONFIRM PASSWORD*</label>
-                    <input type="password" id="confirm" name="confirm-pw" required>
+                    <label for="confirm-pw">CONFIRM PASSWORD*</label>
+                    <input type="password" id="confirm-pw" name="confirm-pw" minlength = 8 required>
+                    <p class="error" id="confirm-error">Error message</p>
                 </div>
             </form>
         </main>
         <div class="submit">
-            <button class="create" form="sign-up">Create Account</button>
+            <button class="create" form="form">Create Account</button>
             <p>Already have an account? <a href="">Log in</a></p>
         </div>
     </div>
