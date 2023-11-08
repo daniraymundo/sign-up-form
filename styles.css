@@ -180,5 +180,5 @@ form label {
 .error {
     color: red;
     visibility: hidden;
-    height: 2rem;
+    height: 1.5rem;
 }
