@@ -9,6 +9,7 @@ const firstNamePattern = /^[a-zA-Z]+$/;
 const lastNamePattern = /^[a-zA-Z]+$/;
 const emailPattern = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
 const phonePattern = /^\+?\d+$/;
+const pwPattern = /^(?=.*[A-Z])(?=.*[a-z])(?=.*\d)(?=.*[\W_]).*$/;
 
 form.addEventListener("submit", (e) => {
     e.preventDefault();
@@ -55,6 +56,9 @@ function validateInputs() {
         makeInvalid(confirm, " ");
     } else if (pw.value.trim().length < 8) {
         makeInvalid(pw, "Password must be at least 8 characters");
+        makeInvalid(confirm, " ");
+    } else if (!isFormatValid(pw.value, pwPattern)) {
+        makeInvalid (pw, "Password must contain at least 1 uppercase letter, lowercase letter, digit, and special character");
         makeInvalid(confirm, " ");
     } else if (pw.value.trim() !== confirm.value.trim()) {
         makeInvalid(confirm, "Passwords do not match");
