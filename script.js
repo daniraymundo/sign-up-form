@@ -5,6 +5,7 @@ const email = document.querySelector("#email");
 const phone = document.querySelector("#phone");
 const pw = document.querySelector("#pw");
 const confirm = document.querySelector("#confirm-pw");
+
 const firstNamePattern = /^[a-zA-Z]+$/;
 const lastNamePattern = /^[a-zA-Z]+$/;
 const emailPattern = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
