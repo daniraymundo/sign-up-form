@@ -4,12 +4,12 @@ const lastName = document.querySelector("#lastname");
 const email = document.querySelector("#email");
 const phone = document.querySelector("#phone");
 const pw = document.querySelector("#pw");
-const confirm = document.querySelector("#confirm-pw");
+const confirmpw = document.querySelector("#confirm-pw");
 
 const firstNamePattern = /^[a-zA-Z]+$/;
 const lastNamePattern = /^[a-zA-Z]+$/;
-const emailPattern = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
-const phonePattern = /^\+?\d+$/;
+const emailPattern = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9-]+\.[a-zA-Z]{2,}$/;
+const phonePattern = /^\+?\d{4,}$/;
 const pwPattern = /^(?=.*[A-Z])(?=.*[a-z])(?=.*\d)(?=.*[\W_]).*$/;
 
 form.addEventListener("submit", (e) => {
@@ -17,84 +17,103 @@ form.addEventListener("submit", (e) => {
     validateInputs();
 });
 
-function validateInputs() {
-    let allFieldsValid = true;
+//Field event listeners to validate inputs for each field as the user is typing on them
 
-    if (firstName.value.trim().length === 0) {
-        makeInvalid(firstName, "First name is required");
-        allFieldsValid = false;
-    } else if (!isFormatValid(firstName.value, firstNamePattern)) {
-        makeInvalid(firstName, "Only letters are allowed");
-        allFieldsValid = false;
-    } else {
-        makeValid(firstName);
+firstName.addEventListener("input", () => {
+    validateField(firstName, firstNamePattern);
+});
+
+lastName.addEventListener("input", () => {
+    validateField(lastName, lastNamePattern);
+});
+
+email.addEventListener("input", () => {
+    validateField(email, emailPattern);
+});
+
+phone.addEventListener("input", () => {
+    validateField(phone, phonePattern);
+});
+
+pw.addEventListener("input", () => {
+    validatePasswordField();
+});
+
+confirmpw.addEventListener("input", () => {
+    validatePasswordField();
+});
+
+function validateField(field, pattern) {
+    let errorMessage = "";
+
+    if (field === firstName || field === lastName) {
+        errorMessage = "Only letters are allowed"
+    } else if (field === email || field === phone) {
+        errorMessage = `Please enter a valid ${field.previousElementSibling.textContent}`;
     };
 
-    if (lastName.value.trim().length === 0) {
-        makeInvalid(lastName, "Last name is required");
-        allFieldsValid = false;
-    } else if (!isFormatValid(lastName.value, lastNamePattern)) {
-        makeInvalid(lastName, "Only letters are allowed");
-        allFieldsValid = false;
+    if (field.value.trim().length ===  0) {
+        makeInvalid(field, `Please enter your ${field.previousElementSibling.textContent}`);
+        return false;
+    } else if (!isFormatValid(field.value, pattern)) {
+        makeInvalid(field, errorMessage);
+        return false;
     } else {
-        makeValid(lastName);
+        makeValid(field);
+        return true;
     };
+};
 
-    if (email.value.trim().length === 0) {
-        makeInvalid(email, "Email is required");
-        allFieldsValid = false;
-    } else if (!isFormatValid(email.value, emailPattern)) {
-        makeInvalid(email, "Please enter a valid email address");
-        allFieldsValid = false;
-    } else {
-        makeValid(email);
-    };
-
-    if (phone.value.trim().length === 0) {
-        makeInvalid(phone, "Phone number is required");
-        allFieldsValid = false;
-    } else if (phone.value.trim().length < 4) {
-        makeInvalid(phone, "Please enter a valid phone number");
-        allFieldsValid = false;
-    } else if (!isFormatValid(phone.value, phonePattern)) {
-        makeInvalid(phone, "Please enter a valid phone number");
-        allFieldsValid = false;
-    } else {
-        makeValid(phone);
-    };
-
+function validatePasswordField() {
     if (pw.value.trim().length === 0) {
-        makeInvalid(pw, "Password is required");
-        makeInvalid(confirm, " ");
-        allFieldsValid = false;
+        makeInvalid(pw, "Please enter your password");
+        makeInvalid(confirmpw, " ");
+        return false;
     } else if (pw.value.trim().length < 8) {
         makeInvalid(pw, "Password must be at least 8 characters");
-        makeInvalid(confirm, " ");
-        allFieldsValid = false;
+        makeInvalid(confirmpw, " ");
+        return false;
     } else if (!isFormatValid(pw.value, pwPattern)) {
-        makeInvalid (pw, "Password must contain at least 1 uppercase letter, lowercase letter, digit, and special character");
-        makeInvalid(confirm, " ");
-        allFieldsValid = false;
+        makeInvalid (pw, "Password must contain at least 1 uppercase letter, lowercase letter, \r\ndigit, and special character");
+        makeInvalid(confirmpw, " ");
+        return false;
     } else if (pw.value.trim().length > 0 && 
                 pw.value.trim().length >= 8 && 
                 isFormatValid(pw.value, pwPattern) && 
-                confirm.value.trim().length === 0) {
+                confirmpw.value.trim().length === 0) {
         makeValid(pw);
-        makeInvalid(confirm, "Please retype your password")
-        allFieldsValid = false
-    } else if (pw.value.trim() !== confirm.value.trim()) {
-        makeInvalid(confirm, "Passwords do not match");
+        makeInvalid(confirmpw, "Please retype your password")
+        return false;
+    } else if (pw.value.trim() !== confirmpw.value.trim()) {
+        makeInvalid(confirmpw, "Passwords do not match");
         makeInvalid(pw,"");
-        allFieldsValid = false;
+        return false;
     } else {
-        makeValid(confirm);
+        makeValid(confirmpw);
         makeValid(pw);
+        return true;
     };
-
-    if(allFieldsValid) {
-        form.submit();
-    }
 };
+
+function validateInputs() { 
+    
+    //The validateField function is called on each field when submitting the form to validate all fields and display all applicable error messages at once  
+
+    validateField(firstName, firstNamePattern)
+    validateField(lastName, lastNamePattern)
+    validateField(email, emailPattern)
+    validateField(phone, phonePattern)
+    validatePasswordField()
+
+    if (
+        validateField(firstName, firstNamePattern) &&
+        validateField(lastName, lastNamePattern) &&
+        validateField(email, emailPattern) &&
+        validateField(phone, phonePattern) &&
+        validatePasswordField()
+    )
+        form.submit();
+}
 
 function isFormatValid(input, pattern) {
     return pattern.test(input);

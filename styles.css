@@ -93,17 +93,22 @@ main {
 
 form {
     display: grid;
-    min-width: 80%;
     grid-template-columns: 1fr 1fr;
     grid-template-rows: repeat(4, 1fr);
     row-gap: 1rem;
-    column-gap: 1rem;
+    column-gap: 5rem;
     padding: 1rem 0 2rem 10rem;
 }
 
 form label {
     font-size: 1rem;
     letter-spacing: 1px;
+    text-transform: uppercase;
+}
+
+form label::after {
+    content: "*";
+    color: red;
 }
 
 .instructions {
@@ -179,4 +184,6 @@ form label {
 .error {
     color: red;
     visibility: hidden;
+    white-space: pre-line;
+    height: 2rem;
 }
