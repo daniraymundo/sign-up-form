@@ -101,7 +101,7 @@ form {
 }
 
 form label {
-    font-size: 0.75rem;
+    font-size: 0.85rem;
     letter-spacing: 1px;
     text-transform: uppercase;
 }
@@ -162,7 +162,7 @@ form label::after {
 
 .submit button {
     align-self: flex-start;
-    font-size: 1rem;
+    font-size: 1.10rem;
     font-weight: 700;
     color: #fff;
     background-color: #596D48;
