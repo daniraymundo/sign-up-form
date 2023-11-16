@@ -253,11 +253,17 @@ form label::after {
         align-items: center;
         padding: 1rem;
         margin: 0;
+        gap: 1rem;
     }
 
     .form-row {
         width: 100%;
         align-items: center;
+    }
+    
+    .form-row input {
+        font-size: 2rem;
+        padding: 1rem;
     }
 
     form label {
