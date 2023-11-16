@@ -231,7 +231,7 @@ form label::after {
     }
     
     .credits {
-        gap: 3rem;
+        gap: 5rem;
     }
 
     .icon {
