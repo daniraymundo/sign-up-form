@@ -44,13 +44,14 @@ header {
 
 .credits {
     display: flex;
+    flex-direction: column;
     position: absolute;
     bottom: 0;
     margin: 0;
     padding: 0;
     color: #fff;
     width: 100%;
-    justify-content: center;
+    align-items: center;
     padding: 5px;
     font-family: "Roboto", Arial, sans-serif;
     font-size: 1rem;
@@ -58,6 +59,10 @@ header {
 
 .credits a {
     color:#fff;
+}
+
+.icon {
+    visibility: hidden;
 }
 
 .logo-container {
@@ -188,6 +193,18 @@ form label::after {
     height: 1rem;
 }
 
+@keyframes float {
+	0% {
+		transform: translatey(0px);
+	}
+	50% {
+		transform: translatey(-10px);
+	}
+	100% {
+		transform: translatey(0px);
+	}
+}
+
 @media (max-width: 500px) {
 
     * {
@@ -211,6 +228,15 @@ form label::after {
     .right {
         min-height: 100vh;
         min-width: 100vw;
+    }
+    
+    .credits {
+        gap: 0.5rem;
+    }
+
+    .icon {
+        visibility: visible;
+        animation: float 1s cubic-bezier(0.59, 0.575, 0.565, 1) infinite;
     }
 
     .right {

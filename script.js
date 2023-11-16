@@ -17,7 +17,7 @@ form.addEventListener("submit", (e) => {
     validateInputs();
 });
 
-//Field event listeners to validate inputs for each field as the user is typing on them
+//Field event listeners to validate inputs for each field as the user is typing on them (real-time validation)
 
 firstName.addEventListener("input", () => {
     validateField(firstName, firstNamePattern);
@@ -97,7 +97,7 @@ function validatePasswordField() {
 
 function validateInputs() { 
     
-    //The validateField function is called on each field when submitting the form to validate all fields and display all applicable error messages at once  
+    //The validateField function is called on each field when the Create Account button is clicked to validate all fields and display all applicable error messages at once  
 
     validateField(firstName, firstNamePattern)
     validateField(lastName, lastNamePattern)
