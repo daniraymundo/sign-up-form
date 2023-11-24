@@ -5,12 +5,15 @@ const email = document.querySelector("#email");
 const phone = document.querySelector("#phone");
 const pw = document.querySelector("#pw");
 const confirmpw = document.querySelector("#confirm-pw");
+const modal = document.querySelector(".modal");
+const okButton = document.querySelector(".ok-button");
 
 const firstNamePattern = /^[a-zA-Z]+$/;
 const lastNamePattern = /^[a-zA-Z]+$/;
 const emailPattern = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9-]+\.[a-zA-Z]{2,}$/;
 const phonePattern = /^\+?\d{4,}$/;
 const pwPattern = /^(?=.*[A-Z])(?=.*[a-z])(?=.*\d)(?=.*[\W_]).*$/;
+
 
 form.addEventListener("submit", (e) => {
     e.preventDefault();
@@ -112,7 +115,7 @@ function validateInputs() {
         validateField(phone, phonePattern) &&
         validatePasswordField()
     )
-        form.submit();
+        setTimeout(() => modal.showModal(), 500);
 }
 
 function isFormatValid(input, pattern) {
@@ -132,3 +135,8 @@ function makeValid(input) {
     formRow.className = ("form-row valid");
     error.textContent = " ";
 };
+
+okButton.addEventListener("click", () => {
+    form.submit();
+    modal.close();
+})
